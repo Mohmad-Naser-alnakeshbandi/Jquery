@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <title>ToDo-oooo</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap');
+        *{
+            font-family: 'Kdam Thmor Pro', sans-serif; 
+        }
+    .Main{
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+    }
+    .input{
+        margin-top: 3vh;
+        display: flex;
+        width:50%;
+        justify-content: space-around;
+
+    }
+    .input input{
+        width: 400px;
+       
+    }
+    .input button{
+        width: 200px;
+    }
+    h1{
+        font-size: 25px;
+        margin-left: 5%;
+    }
+    .ToDo
+    {
+            display: flex;
+            width: 100%;
+            justify-content: space-around;   
+    }
+    #itemlist{
+        border:none;
+        width:200px;
+        margin-right:20px;
+        margin-bottom: 20px;
+        font-size: 27px;
+    }
+    #edit{
+        width:100px;
+        margin-right:20px;
+    }
+    #remove{
+        width:100px;
+        margin-right:20px;
+    }
+    #done{
+        width:100px;
+        margin-right:20px;
+    }
+    </style>
+
+    <script>
+            $(document).ready(function()
+            {
+          
+                editbtn= "<button id='edit'>✍️</button>";
+                removebtn="<button id='remove' >❌ </button>";
+                donebtn="<button id='done' >✔️</button>";
+                console.log("ready");
+                    $("#Add").click(function write()
+                    {
+                        data=  $("#data").val();
+                        $('ol').append('<li>'+'<input type="text"  id="itemlist" value="'+data+'">' +donebtn  + removebtn + editbtn +'</li>');
+                        $("#data").val(" ");
+                        $('ol').next("li").next("input").css({
+                            "color": "green",
+
+                        });
+                        console.log("Add-item");
+                    });
+                    $('ol').on("click","#done",function()
+                    {
+                        console.log("Done");
+                        $(this).prev("input").css({
+                            "text-decoration": "line-through",
+
+                        });
+                    });
+
+                    $('ol').on("click","#remove",function()
+                    {
+                        console.log("remove");
+                        $(this).parent("li").remove();
+                    });
+                    $('ol').on("click","#edit",function()
+                    {
+                        console.log("edit");
+                       $(this).prevAll("input").focus();
+                       $(this).prevAll("input").val(" ");
+                    });
+                    
+
+            });
+    </script>
+</head>
+<body>
+    <div class="Main">
+        <div class="input">
+            <input type="text" id="data" placeholder="the next aim ">
+            <button id="Add">Add</button>
+        </div>
+    </div>
+    <h1>ToDo</h1>
+    <div class="ToDo">         
+         <ol id="list"></ol>
+    </div>
+</body>
+</html>
